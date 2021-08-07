@@ -1,6 +1,7 @@
-# テーブル設計
+# README
 
-## users テーブル
+
+
 
 
 | Column             | Type   | Options     |
@@ -10,7 +11,8 @@
 | name               | string | null: false |
 
 
-## items テーブル
+
+
 
 
 | Column             | Type       | Options                       |
@@ -26,7 +28,8 @@
 | days               | string     | null: false                   |
 
 
-## buyer record テーブル
+
+
 
 
 | Column            | Type       | Options                       |
@@ -34,10 +37,12 @@
 | user              | references | null: false foreign_key: true |
 | purchased items   | references | null: false                   |
 
-## shipping information テーブル
+
+
 
 
 | Column            | Type       | Options                       |
 | ------            | ------     | -----------                   |
 | user              | references | null: false foreign_key: true |
 | phone number      | references | null: false                   |
+
