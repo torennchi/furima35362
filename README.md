@@ -2,6 +2,7 @@
 
 ## users テーブル
 
+
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | email              | string | null: false |
@@ -10,6 +11,7 @@
 
 
 ## items テーブル
+
 
 | Column             | Type       | Options                       |
 | ------             | ------     | -----------                   |
@@ -26,12 +28,14 @@
 
 ## buyer record テーブル
 
+
 | Column            | Type       | Options                       |
 | ------            | ------     | -----------                   |
 | user              | references | null: false foreign_key: true |
 | purchased items   | references | null: false                   |
 
 ## shipping information テーブル
+
 
 | Column            | Type       | Options                       |
 | ------            | ------     | -----------                   |
