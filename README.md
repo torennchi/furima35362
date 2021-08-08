@@ -2,7 +2,7 @@
 
 
 
-
+## users テーブル
 
 | Column             | Type   | Options      |
 | ------------------ | ------ | -----------  |
@@ -10,21 +10,24 @@
 | encrypted_password | string | null: false  |
 | nickname           | string | null: false  |
 | birthday           | string | null: false  |
+| name               | string | null: false  |
+| kana_name          | string | null: false  |
+
 
 ### Association
 
 has_many :items
-has_many :buyer record
+has_many :buyer_records
 
 
 
 
 
-
+## items テーブル
 
 | Column             | Type       | Options                       |
 | ------             | ------     | -----------                   |
-| product name       | string     | null: false                   |
+| product_name       | string     | null: false                   |
 | category_id        | integer    | null: false                   |
 | price              | integer    | null: false                   |
 | user               | references | null: false foreign_key: true |
@@ -35,26 +38,26 @@ has_many :buyer record
 | days_id            | integer    | null: false                   |
 
 ### Association
-has_many :users
-has_many :address
-has_one :buyer record
+has_one :users
+has_one :buyer_records
 
 
 
 
 
 
-
+## buyer_record テーブル
 
 | Column            | Type       | Options                       |
 | ------            | ------     | -----------                   |
 | user              | references | null: false foreign_key: true |
-| purchased items   | references | null: false                   |
+| purchased_items   | references | null: false foreign_key: true |
 
 
 ### Association
-has_one :items
+has_many :items
 has_many :users
+has_one :address
 
 
 
@@ -66,12 +69,12 @@ has_many :users
 | Column            | Type       | Options                       |
 | ------            | ------     | -----------                   |
 | user              | references | null: false foreign_key: true |
-| phone number      | references | null: false                   |
-| postal code       | references | null: false                   |
-| prefectures       | references | null: false                   |
-| municipalities    | references | null: false                   |
-| address           | references | null: false                   |
-| building name     | references | null: false                   |
+| phone_number      | string     | null: false                   |
+| postal_code       | string     | null: false                   |
+| prefectures       | string     | null: false                   |
+| municipalities    | string     | null: false                   |
+| address           | string     | null: false                   |
+| building_name     | string     | null: false                   |
 
 
 ### Association
