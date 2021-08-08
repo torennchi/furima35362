@@ -1,6 +1,7 @@
-# テーブル設計
+# README
 
-## users テーブル
+
+
 
 
 | Column             | Type   | Options      |
@@ -17,7 +18,8 @@ has_many :buyer record
 
 
 
-## items テーブル
+
+
 
 
 | Column             | Type       | Options                       |
@@ -40,13 +42,15 @@ has_one :buyer record
 
 
 
-## buyer record テーブル
+
+
 
 
 | Column            | Type       | Options                       |
 | ------            | ------     | -----------                   |
 | user              | references | null: false foreign_key: true |
 | purchased items   | references | null: false                   |
+
 
 ### Association
 has_one :items
@@ -56,6 +60,7 @@ has_many :users
 
 
 ## address テーブル
+
 
 
 | Column            | Type       | Options                       |
@@ -71,3 +76,4 @@ has_many :users
 
 ### Association
 has_many :items
+
