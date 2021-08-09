@@ -40,7 +40,7 @@ has_many :buyer_records
 | days_id            | integer    | null: false                   |
 
 ### Association
-belongs_to :users
+belongs_to :user
 has_one :buyer_record
 
 
@@ -57,8 +57,8 @@ has_one :buyer_record
 
 
 ### Association
-belongs_to :items
-belongs_to :users
+belongs_to :item
+belongs_to :user
 has_one :address
 
 
@@ -80,5 +80,5 @@ has_one :address
 
 
 ### Association
-belongs_to :items
+belongs_to :buyer_record
 
