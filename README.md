@@ -9,8 +9,10 @@
 | email              | string | unique: true |
 | encrypted_password | string | null: false  |
 | nickname           | string | null: false  |
-| birthday           | string | null: false  |
+| birthday           | date   | null: false  |
+| surname            | string | null: false  |
 | name               | string | null: false  |
+| kana_surname       | string | null: false  |
 | kana_name          | string | null: false  |
 
 
@@ -38,8 +40,8 @@ has_many :buyer_records
 | days_id            | integer    | null: false                   |
 
 ### Association
-has_one :users
-has_one :buyer_records
+belongs_to :users
+has_one :buyer_record
 
 
 
@@ -51,12 +53,12 @@ has_one :buyer_records
 | Column            | Type       | Options                       |
 | ------            | ------     | -----------                   |
 | user              | references | null: false foreign_key: true |
-| purchased_items   | references | null: false foreign_key: true |
+| items             | references | null: false foreign_key: true |
 
 
 ### Association
-has_many :items
-has_many :users
+belongs_to :items
+belongs_to :users
 has_one :address
 
 
@@ -68,15 +70,15 @@ has_one :address
 
 | Column            | Type       | Options                       |
 | ------            | ------     | -----------                   |
-| user              | references | null: false foreign_key: true |
+| buyer_record      | references | null: false foreign_key: true |
 | phone_number      | string     | null: false                   |
 | postal_code       | string     | null: false                   |
-| prefectures       | string     | null: false                   |
+| area_id           | integer    | null: false                   |
 | municipalities    | string     | null: false                   |
 | address           | string     | null: false                   |
-| building_name     | string     | null: false                   |
+| building_name     | string     |                               |
 
 
 ### Association
-has_many :items
+belongs_to :items
 
