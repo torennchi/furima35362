@@ -1,9 +1,6 @@
 # README
 
-
-
 ## users テーブル
-
 | Column             | Type   | Options                  |
 | ------------------ | ------ | -----------              |
 | email              | string | null: false unique: true |
@@ -15,15 +12,10 @@
 | kana_surname       | string | null: false              |
 | kana_name          | string | null: false              |
 
-
 ### Association
 
 has_many :items
 has_many :buyer_records
-
-
-
-
 
 ## items テーブル
 
@@ -42,10 +34,6 @@ has_many :buyer_records
 ### Association
 belongs_to :user
 has_one :buyer_record
-
-
-
-
 
 
 ## buyer_records テーブル
@@ -81,4 +69,3 @@ has_one :address
 
 ### Association
 belongs_to :buyer_record
-
