@@ -1,6 +1,8 @@
 <mxfile host="65bd71144e">
     <diagram id="asVwY7NFplg3QDuGdfhq" name="ページ1">
+
         <mxGraphModel dx="827" dy="680" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -34,8 +36,10 @@
                 <mxCell id="89" value="発送までの日数 days_id" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="80">
                     <mxGeometry y="266" width="210" height="30" as="geometry"/>
                 </mxCell>
+
                 <mxCell id="90" value="users" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" vertex="1" parent="1">
                     <mxGeometry x="50" y="50" width="160" height="266" as="geometry"/>
+
                 </mxCell>
                 <mxCell id="91" value="nickname" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="90">
                     <mxGeometry y="26" width="160" height="30" as="geometry"/>
@@ -46,11 +50,13 @@
                 <mxCell id="93" value="password" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="90">
                     <mxGeometry y="86" width="160" height="30" as="geometry"/>
                 </mxCell>
+
                 <mxCell id="94" value="birthday" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="90">
                     <mxGeometry y="116" width="160" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="95" value="surname" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="90">
                     <mxGeometry y="146" width="160" height="30" as="geometry"/>
+
                 </mxCell>
                 <mxCell id="96" value="name " style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="90">
                     <mxGeometry y="176" width="160" height="30" as="geometry"/>
