@@ -50,6 +50,52 @@ require 'rails_helper'
         @user.valid?
         expect(@user.errors.full_messages).to include("Kana name can't be blank")
      end
+     it "メールアドレスが一意性である" do
+      @user.save
+        another_user = FactoryBot.build(:user)
+        another_user.email = @user.email
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include("Email has already been taken")
+      end
+      it "メールアドレスは、@を含む必要がある" do
+        @user.email = "aaaaaaaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
+      it "passwordが5文字以下では登録できない" do
+        @user.password = "000aa"
+        @user.password_confirmation = "000aa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+      end
+      it "パスワードは、確認用を含めて2回入力する" do
+        @user.password = "0000aa"
+        @user.password_confirmation = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it "ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須である" do
+        @user.surname = "111111"
+        @user.name = "111111"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Name is invalid. Input full-width characters.")
+      end
+      it "ユーザー本名のフリガナは、全角（カタカナ）での入力が必須である" do
+        @user.kana_surname = "111111"
+        @user.kana_name = "111111"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Kana surname is invalid.")
+      end
    end
+
+  context "新規登録できる時" do
+    it "パスワードは、半角英数字混合での入力が必須である" do
+      @user.password = "0000aa"
+      @user.password_confirmation = "0000aa"
+      expect(@user).to be_valid
+    end
+
+  end
+
 
  end
