@@ -4,16 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  validates :email                 , presence: true
-  validates :encrypted_password    , presence: true
-  validates :password_confirmation , presence: true
-  validates :nickname              , presence: true
-  validates :birthday              , presence: true
-  validates :surname               , presence: true
-  validates :name                  , presence: true
-  validates :kana_surname          , presence: true
-  validates :kana_name             , presence: true
+         with_options presence: true do
+          validates :surname, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
+          validates :name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
+          validates :nickname, format: { with: /\A[a-z0-9]+\z/i, message: "is invalid. Input half-width characters."}
+          validates :kana_surname, format: { with:/\A[ァ-ヶー－]+\z/, message: "is invalid."}
+          validates :kana_name, format: { with:/\A[ァ-ヶー－]+\z/, message: "is invalid."}
+          validates :birthday
+          end
 
-  has_many :items
-  has_many :buyer_records
+  # has_many :items
+  # has_many :buyer_records
 end
