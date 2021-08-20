@@ -74,28 +74,35 @@ require 'rails_helper'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-      it "ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須である" do
+      it "surnameは、全角（漢字・ひらがな・カタカナ）での入力が必須である" do
         @user.surname = "111111"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Surname is invalid. Input full-width characters.")
+      end
+      it "nameは、全角（漢字・ひらがな・カタカナ）での入力が必須である" do
         @user.name = "111111"
         @user.valid?
         expect(@user.errors.full_messages).to include("Name is invalid. Input full-width characters.")
       end
-      it "ユーザー本名のフリガナは、全角（カタカナ）での入力が必須である" do
-        @user.kana_surname = "111111"
-        @user.kana_name = "111111"
+      it "kana_surnameは、全角（カタカナ）での入力が必須である" do
+        @user.kana_surname = "ああああああ"
         @user.valid?
         expect(@user.errors.full_messages).to include("Kana surname is invalid.")
       end
+      it "kana_nameは、全角（カタカナ）での入力が必須である" do
+        @user.kana_name = "ああああああ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Kana name is invalid.")
+      end
    end
-
   context "新規登録できる時" do
     it "パスワードは、半角英数字混合での入力が必須である" do
       @user.password = "0000aa"
       @user.password_confirmation = "0000aa"
       expect(@user).to be_valid
     end
-
+    it "全ての項目が入力されていれば登録できる" do
+      expect(@user).to be_valid
+    end
   end
-
-
- end
+end
