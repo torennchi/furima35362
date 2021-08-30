@@ -1,13 +1,20 @@
 require 'rails_helper'
- RSpec.describe Item, type: :model do
+ RSpec.context Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
   end
 
-   describe '商品の情報の保存' do
+  context '商品の情報の保存ができる' do
      it 'すべての値が正しく入力されていれば保存できること' do
         expect(@item).to be_valid
      end
+    end
+  context '商品の情報の保存ができない' do
+    it 'userが紐付いていないと保存できない' do
+      @item.user = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('User must exist')
+    end
      it '商品名が必須であること' do
         @item.product_name = ""
         @item.valid?
@@ -43,6 +50,14 @@ require 'rails_helper'
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping day can't be blank")
      end
+     it '0が選択された場合登録できないこと' do
+        @item.area_id = 0
+        @item.cost_id = 0
+        @item.status_id = 0
+        @item.shipping_day_id = 0
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping day can't be blank")
+     end
      it '販売価格についての情報が必須であること' do
         @item.price = ""
         @item.valid?
@@ -53,8 +68,8 @@ require 'rails_helper'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is out of setting range")
      end
-     it 'priceが1,000,000円を超過すると保存できないこと' do
-        @item.price = 1000001
+     it 'priceが9,999,999円を超過すると保存できないこと' do
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is out of setting range")
      end
@@ -62,6 +77,16 @@ require 'rails_helper'
         @item.price = '２０００'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is out of setting range")
+     end
+     it '半角英数混合では登録できないこと' do
+        @item.price = '12aaaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is out of setting range")
+     end
+     it '半角英語だけでは登録できないこと' do
+      @item.price = 'aaaa'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is out of setting range")
      end
   end
 end
