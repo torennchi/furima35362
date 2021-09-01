@@ -29,7 +29,7 @@ has_many :buyer_records
 | status_id          | integer    | null: false                   |
 | cost_id            | integer    | null: false                   |
 | area_id            | integer    | null: false                   |
-| days_id            | integer    | null: false                   |
+| shipping_day_id            | integer    | null: false                   |
 
 ### Association
 belongs_to :user
