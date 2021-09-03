@@ -1,17 +1,13 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index,:show]
-  before_action :set_item, only: [:edit, :show, :destroy, :update]
+  before_action :set_item, only: :show
 
   def index
     @items = Item.all
   end
 
   def new
-    if user_signed_in?
       @item = Item.new
-   else
-      redirect_to user_session_path(@item.id)
-   end
  end
 
   def create
@@ -24,25 +20,24 @@ class ItemsController < ApplicationController
     end
   end
 
-  def update
-    if @item.update(item_params)
-      redirect_to root_path
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   if @item.update(item_params)
+  #     redirect_to root_path
+  #   else
+  #     render :edit
+  #   end
+  # end
 
 
-  def destroy
-    if @item.destroy
-      redirect_to root_path
-    else
-      render :show
-    end
-  end
+  # def destroy
+  #   if @item.destroy
+  #     redirect_to root_path
+  #   else
+  #     render :show
+  #   end
+  # end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   private
