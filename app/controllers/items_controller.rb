@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index,:show,:edit,:update,:new,:create]
+  before_action :authenticate_user!, except: [:index,:show]
   before_action :item_confirmation, only: [:update,:edit]
   before_action :set_item, only: [:show, :update,:edit]
 
@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to edit_item_path
+      redirect_to item_path
     else
       render :edit
     end
@@ -59,7 +59,8 @@ class ItemsController < ApplicationController
 end
 
  def item_confirmation
-  redirect_to root_path unless current_user == items_url
+  @item = Item.find(params[:id])
+  redirect_to root_path unless current_user.id == @item.user_id
  end
 end
 
