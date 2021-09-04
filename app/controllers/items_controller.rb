@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index,:show,:edit,:update,:new,:create]
-  before_action :item_confirmation, only: :update
+  before_action :item_confirmation, only: [:update,:edit]
   before_action :set_item, only: [:show, :update,:edit]
 
   def index
@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to root_path
+      redirect_to edit_item_path
     else
       render :edit
     end
