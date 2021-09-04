@@ -8,11 +8,11 @@ class ItemsController < ApplicationController
   end
 
   def new
-    if user_signed_in?
-      @item = Item.new
-    else
-      redirect_to user_session_path(@item.id)
-    end
+    # if user_signed_in?
+    #   @item = Item.new
+    # else
+    #   redirect_to user_session_path(@item.id)
+    # end
   end
 
   def edit
@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to item_path
+      redirect_to item_path(@item.id)
     else
       render :edit
     end
