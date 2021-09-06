@@ -54,8 +54,6 @@ has_one :address
 
 ## addresses テーブル
 
-
-
 | Column            | Type       | Options                       |
 | ------            | ------     | -----------                   |
 | buyer_record      | references | null: false foreign_key: true |
