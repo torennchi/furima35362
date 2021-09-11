@@ -1,7 +1,7 @@
 class BuyerRecordAddress
 
   include ActiveModel::Model
-  attr_accessor  :phone_number, :postal_code, :area_id, :municipalities, :address, :building_name, :item_id, :user_id
+  attr_accessor  :phone_number, :postal_code, :area_id, :municipalities, :address, :building_name, :item_id, :user_id, :token
 
 
   with_options presence: true do
@@ -11,6 +11,7 @@ class BuyerRecordAddress
     validates :municipalities
     validates :user_id
     validates :item_id
+    validates :token
     with_options  numericality: { other_than: 0 , message: "can't be blank"}do
       validates  :area_id
     end

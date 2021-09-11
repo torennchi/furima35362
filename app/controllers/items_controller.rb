@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :update, :edit, :destroy]
   before_action :authenticate_user!, except: [:index,:show]
   before_action :item_confirmation, only: [:edit, :destroy, :update]
+  before_action :edit_cancel, only: :edit
 
   def index
     @items = Item.all
@@ -58,6 +59,11 @@ end
   @item = Item.find(params[:id])
   redirect_to root_path unless current_user.id == @item.user_id
  end
+
+ def edit_cancel
+  @item = Item.find(params[:id])
+  redirect_to root_path if @item.buyer_record.present?
+end
 end
 
 

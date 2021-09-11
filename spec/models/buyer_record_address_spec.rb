@@ -47,6 +47,11 @@ context '商品購入がうまくいかない時' do
       @buyer_record_address.valid?
       expect(@buyer_record_address.errors.full_messages).to include("Phone number is invalid. Input half-width characters.") 
     end
+    it "tokenが空では登録できないこと" do
+      @buyer_record_address.token = nil
+      @buyer_record_address.valid?
+      expect(@buyer_record_address.errors.full_messages).to include("Token can't be blank")
+    end
   end
 end
 
