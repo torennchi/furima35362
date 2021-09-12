@@ -10,6 +10,10 @@ RSpec.context BuyerRecordAddress, type: :model do
     it '全ての値が正しく入力されていれば購入できること' do
       expect(@buyer_record_address).to be_valid
     end
+    it '建物名がない場合も登録出来ること' do
+      @buyer_record_address.building_name = nil
+      expect(@buyer_record_address).to be_valid
+    end
   end
 context '商品購入がうまくいかない時' do
     it 'post_codeが空だと購入できない' do
@@ -47,10 +51,25 @@ context '商品購入がうまくいかない時' do
       @buyer_record_address.valid?
       expect(@buyer_record_address.errors.full_messages).to include("Phone number is invalid. Input half-width characters.") 
     end
-    it "tokenが空では登録できないこと" do
+    it 'phone_numberが半角数字以外が含まれる場合は登録できない' do
+      @buyer_record_address.phone_number = "0901234aaaa"
+      @buyer_record_address.valid?
+      expect(@buyer_record_address.errors.full_messages).to include("Phone number is invalid. Input half-width characters.") 
+    end
+      it "tokenが空では登録できないこと" do
       @buyer_record_address.token = nil
       @buyer_record_address.valid?
       expect(@buyer_record_address.errors.full_messages).to include("Token can't be blank")
+    end
+    it "user_idが空では登録できないこと" do
+      @buyer_record_address.user_id = nil
+      @buyer_record_address.valid?
+      expect(@buyer_record_address.errors.full_messages).to include("User can't be blank")
+    end
+    it "user_idが空では登録できないこと" do
+      @buyer_record_address.item_id = nil
+      @buyer_record_address.valid?
+      expect(@buyer_record_address.errors.full_messages).to include("Item can't be blank")
     end
   end
 end

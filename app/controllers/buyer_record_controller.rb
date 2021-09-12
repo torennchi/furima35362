@@ -1,15 +1,13 @@
 class BuyerRecordController < ApplicationController
   before_action :set_item, only: [:index, :create]
-  before_action :authenticate_user!,except: :index
+  before_action :authenticate_user!,only: :index
   before_action :item_confirmation, only: :create
+  before_action :buyer_record_url, only: [:index, :create]
 
 
 
   def index
     @buyer_record_address = BuyerRecordAddress.new
-    if current_user == @item.user
-      redirect_to root_path
-    end
   end
 
   def create
@@ -48,6 +46,11 @@ class BuyerRecordController < ApplicationController
   def item_confirmation
     @item = Item.find(params[:id])
     redirect_to root_path unless current_user.id == @item.user_id
-   end
-  
+  end
+
+  def buyer_record_url
+    if @item.user_id == current_user.id || @item.buyer_record != nil
+      redirect_to root_path
+    end
+  end
 end
