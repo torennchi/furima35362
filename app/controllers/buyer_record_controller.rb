@@ -1,7 +1,6 @@
 class BuyerRecordController < ApplicationController
   before_action :set_item, only: [:index, :create]
-  before_action :authenticate_user!,only: :index
-  before_action :item_confirmation, only: :create
+  before_action :authenticate_user!,only: [:index,:create]
   before_action :buyer_record_url, only: [:index, :create]
 
 
@@ -18,9 +17,6 @@ class BuyerRecordController < ApplicationController
       redirect_to root_path 
     else
       render :index
-    end
-    if @item.user_id != current_user.id
-      redirect_to root_path
     end
   end
 
