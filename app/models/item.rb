@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :product_name, :text, :image
       with_options  numericality: { other_than: 0 , message: "can't be blank"}do
-    validates  :area_id, :category_id, :cost_id, :shipping_day_id, :status_id
+        validates  :area_id, :category_id, :cost_id, :shipping_day_id, :status_id
       end
       with_options  numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is out of setting range"}do
     validates  :price
