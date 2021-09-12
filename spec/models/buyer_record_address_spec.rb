@@ -66,7 +66,7 @@ context '商品購入がうまくいかない時' do
       @buyer_record_address.valid?
       expect(@buyer_record_address.errors.full_messages).to include("User can't be blank")
     end
-    it "user_idが空では登録できないこと" do
+    it "item_idが空では登録できないこと" do
       @buyer_record_address.item_id = nil
       @buyer_record_address.valid?
       expect(@buyer_record_address.errors.full_messages).to include("Item can't be blank")
