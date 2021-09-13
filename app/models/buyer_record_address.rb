@@ -5,16 +5,16 @@ class BuyerRecordAddress
 
 
   with_options presence: true do
-    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :phone_number, format: {with: /\A[0-9]{,11}\z/, message: "is invalid. Input half-width characters."}
-    validates :address
-    validates :municipalities
-    validates :user_id
-    validates :item_id
     validates :token
-    with_options  numericality: { other_than: 0 , message: "can't be blank"}do
+    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "はハイフン（-）を含めて入力してください",allow_blank: true}
+    with_options  numericality: { other_than: 0 , message: "を入力してください",allow_blank: true}do
       validates  :area_id
     end
+    validates :municipalities
+    validates :address
+    validates :phone_number, format: {with: /\A[0-9]{,11}\z/, message: "は半角文字を入力してください",allow_blank: true}
+    validates :user_id
+    validates :item_id
   end
 
 
